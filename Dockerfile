@@ -1,4 +1,5 @@
 FROM openjdk:8-jdk-alpine
-MAINTAINER trevorjcarew@gmail.com
-COPY target/atm-machine-1.0.0.jar atm-1.0.0.jar
-ENTRYPOINT ["java","-jar","/atm-1.0.0.jar"]
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
+EXPOSE 8080
