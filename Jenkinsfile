@@ -27,6 +27,19 @@ pipeline {
                  echo "Testing..."
                  sh 'mvn clean install'
              }
-         }
+        }
+
+        stage ('Deploy') {
+            steps {
+                script {
+                    docker.withRegistry() (
+                        '058587610590.dkr.ecr.eu-west-1.amazonaws.com/atm'
+                        'ecr:atm:AWS') {
+                        def myImage = docker.build('atm-machine')
+                        myImage.push('atm-machine')
+                    }
+                }
+            }
+        }
     }
 }
