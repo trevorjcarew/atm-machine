@@ -34,7 +34,7 @@ pipeline {
                 script {
                     docker.withRegistry (
                         '058587610590.dkr.ecr.eu-west-1.amazonaws.com/atm',
-                        'ecr:atm:AWS') {
+                        'ecr:eu-west-1:AWS') {
                         def myImage = docker.build('atm-machine')
                         myImage.push('atm-machine')
                     }
